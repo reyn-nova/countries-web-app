@@ -1,26 +1,71 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+const continents = [
+  {
+    name: 'Asia',
+    countries: [
+      {
+        name: 'Indonesia'
+      },
+      {
+        name: 'Malaysia'
+      },
+      {
+        name: 'Singapore'
+      }
+    ]
+  },
+  {
+    name: 'Europe',
+    countries: [
+      {
+        name: 'United Kingdom'
+      },
+      {
+        name: 'France'
+      },
+      {
+        name: 'Spain'
+      }
+    ]
+  }
+]
+
+export default class extends React.Component {
+  render() {
+    return(
+      <div
+        className = 'container'
+      >
+        <div
+          className = 'top-navigation'
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+          <h1
+            className = 'top-navigation-title'
+          >
+            Countries All Over The World
+          </h1>
+        </div>
 
-export default App;
+        <div
+          className = 'content-container'
+        >
+          {
+            continents.map((continent, continentIndex) => (
+              <a
+                className = 'continent-title'
+                href = {'/' + continent.name}
+                key = {continent.name}
+                style = {{
+                  marginTop: continentIndex !== 0 ? 20 : 0
+                }}
+              >
+                {continent.name}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    )
+  }
+}
